@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [:registrations]
 
   namespace :admin do
-    root to:"home#index"
-
+    root to: "home#index"
+  
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
