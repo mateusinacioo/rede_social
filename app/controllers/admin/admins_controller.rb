@@ -14,10 +14,26 @@ class Admin::AdminsController < AdminController
         if @admin.save
             redirect_to admin_admins_path
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
+    def edit 
+        @admin = Admin.find(params[:id])
+    end
+    
+    def update 
+        @admin = Admin.find(params[:id])
+        params = form_params.to_h
+        params = params.except!(:password, :password_confirmation) if params[:password].blank?
+        
+        if @admin.update(params)
+            redirect_to admin_admins_path
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+    
     private 
 
     def form_params 
