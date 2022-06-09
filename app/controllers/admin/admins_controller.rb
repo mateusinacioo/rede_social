@@ -33,6 +33,12 @@ class Admin::AdminsController < AdminController
             render :edit, status: :unprocessable_entity
         end
     end
+
+    def destroy 
+        @admin = Admin.find(params[:id])
+        @admin.destroy
+        redirect_to admin_admins_path
+    end
     
     private 
 
